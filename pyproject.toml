@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=80.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pydantic-gradio-chatbot"
+version = "0.1.0"
+description = "Lokaler Streaming-Chatbot mit Pydantic AI, GPT-5 mini und Gradio."
+readme = "README.md"
+requires-python = ">=3.14,<3.15"
+dependencies = [
+    "pydantic-ai>=2.10.0,<3.0.0",
+    "gradio>=6.7.0,<7.0.0",
+    "python-dotenv>=1.2.2,<2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=9.1.1,<10.0.0",
+    "pytest-asyncio>=1.4.0,<2.0.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+asyncio_mode = "auto"
