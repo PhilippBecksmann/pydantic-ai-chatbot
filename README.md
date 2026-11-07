@@ -2,21 +2,22 @@
 
 Ein einfacher lokaler KI-Chatbot mit Python, Pydantic AI, OpenAI GPT-5 mini und Gradio.
 
-Die App laeuft lokal im Browser. Deine Nachrichten werden zur Beantwortung an den konfigurierten OpenAI-Dienst uebertragen.
+Die App läuft lokal im Browser. Deine Nachrichten werden zur Beantwortung an den konfigurierten OpenAI-Dienst übertragen.
 
 ## Voraussetzungen
 
 - Windows mit PowerShell oder Eingabeaufforderung
 - Python `3.14.6`
 - Ein OpenAI-API-Key
-- Internetverbindung fuer Modellanfragen
+- Internetverbindung für Modellanfragen
 
 ## Installation unter Windows
 
-Wechsle in den Projektordner:
+Klone das Repository und wechsle in den Projektordner:
 
 ```powershell
-cd pydantic-gradio-chatbot
+git clone https://github.com/PhilippBecksmann/pydantic-ai-chatbot
+cd pydantic-ai-chatbot
 ```
 
 Erstelle eine virtuelle Umgebung:
@@ -31,13 +32,13 @@ Aktiviere sie:
 .venv\Scripts\activate
 ```
 
-Installiere die App und ihre Abhaengigkeiten:
+Installiere die App und ihre Abhängigkeiten:
 
 ```powershell
 pip install -e .
 ```
 
-Fuer Tests installierst du zusaetzlich die Development-Abhaengigkeiten:
+Für Tests installierst du zusätzlich die Development-Abhängigkeiten:
 
 ```powershell
 pip install -e ".[dev]"
@@ -51,7 +52,7 @@ Kopiere `.env.example` zu `.env`:
 copy .env.example .env
 ```
 
-Oeffne `.env` und trage deinen API-Key ein:
+Öffne `.env` und trage deinen API-Key ein:
 
 ```env
 OPENAI_API_KEY=dein_api_key
@@ -73,25 +74,25 @@ Gradio zeigt danach eine lokale URL an, normalerweise:
 http://127.0.0.1:7860
 ```
 
-Oeffne diese Adresse im Browser.
+Öffne diese Adresse im Browser.
 
 ## App verwenden
 
 Du kannst im Textfeld eine Nachricht eingeben und mit **Absenden** senden. Die Antwort wird gestreamt, also schrittweise im Chatfenster angezeigt.
 
-Du kannst Folgefragen stellen. Die App merkt sich den bisherigen Verlauf der aktuellen Browser-Sitzung und uebergibt ihn an Pydantic AI ueber `message_history`.
+Du kannst Folgefragen stellen. Die App merkt sich den bisherigen Verlauf der aktuellen Browser-Sitzung und übergibt ihn an Pydantic AI über `message_history`.
 
-Mit **Stoppen** kannst du eine laufende Antwort abbrechen. Mit **Chat zuruecksetzen** loeschst du den sichtbaren Chat und die Pydantic-AI-Historie der aktuellen Sitzung.
+Mit **Stoppen** kannst du eine laufende Antwort abbrechen. Mit **Chat zuruecksetzen** löschst du den sichtbaren Chat und die Pydantic-AI-Historie der aktuellen Sitzung.
 
 Beispielanfragen:
 
-- `Erklaere mir Pydantic AI einfach.`
-- `Erstelle eine Python-Funktion fuer eine Einkaufsliste.`
+- `Erkläre mir Pydantic AI einfach.`
+- `Erstelle eine Python-Funktion für eine Einkaufsliste.`
 - `Was ist der Unterschied zwischen einem Chatbot und einem KI-Agenten?`
 
-## Tests ausfuehren
+## Tests ausführen
 
-Die Tests verwenden gemockte Agenten und fuehren keine echten OpenAI-Aufrufe aus.
+Die Tests verwenden gemockte Agenten und führen keine echten OpenAI-Aufrufe aus.
 
 ```powershell
 python -m pytest
@@ -100,7 +101,7 @@ python -m pytest
 ## Projektstruktur
 
 ```text
-pydantic-gradio-chatbot/
+pydantic-ai-chatbot/
 ├── app.py
 ├── src/
 │   ├── __init__.py
@@ -119,7 +120,7 @@ pydantic-gradio-chatbot/
 
 ## API-Kosten
 
-Jede echte Chatnachricht kann OpenAI-API-Kosten verursachen. Die genaue Hoehe haengt vom Modell, der Laenge deiner Eingaben, der Laenge der Antworten und dem Kontextverlauf ab.
+Jede echte Chatnachricht kann OpenAI-API-Kosten verursachen. Die genaue Höhe hängt vom Modell, der Länge deiner Eingaben, der Länge der Antworten und dem Kontextverlauf ab.
 
 Das verwendete Modell ist:
 
@@ -130,25 +131,25 @@ openai:gpt-5-mini
 ## Datenschutz und Sicherheit
 
 - Der API-Key wird aus `.env` geladen und nicht protokolliert.
-- Chatverlaeufe werden in Version 1 nicht dauerhaft gespeichert.
-- Vollstaendige Chatverlaeufe und sensible Eingaben werden nicht geloggt.
-- Vom Modell erzeugter Code wird nicht automatisch ausgefuehrt.
+- Chatverläufe werden in Version 1 nicht dauerhaft gespeichert.
+- Vollständige Chatverläufe und sensible Eingaben werden nicht geloggt.
+- Vom Modell erzeugter Code wird nicht automatisch ausgeführt.
 - Die App verwendet kein `eval` und kein `exec`.
 - Benutzereingaben werden nicht als Systemanweisung behandelt.
 
-## Bekannte Einschraenkungen
+## Bekannte Einschränkungen
 
 - Die Historie ist einfach auf die letzten 20 Pydantic-AI-Nachrichten begrenzt.
 - Eine Produktionsversion sollte tokenbasierte Begrenzung oder Kompaktierung verwenden.
 - Es gibt keine Benutzerverwaltung.
-- Chatverlaeufe werden nach einem Reset oder Neustart nicht wiederhergestellt.
-- Ohne gueltigen OpenAI-API-Key kann die App keine Modellantworten erzeugen.
+- Chatverläufe werden nach einem Reset oder Neustart nicht wiederhergestellt.
+- Ohne gültigen OpenAI-API-Key kann die App keine Modellantworten erzeugen.
 
-## Moegliche spaetere Erweiterungen
+## Mögliche spätere Erweiterungen
 
 - Tokenbasierte Historienkompaktierung
 - Persistente Chat-Sitzungen
 - Auswahl mehrerer Modelle in der UI
-- Export von Chatverlaeufen
-- Authentifizierung fuer mehrere Benutzer
+- Export von Chatverläufen
+- Authentifizierung für mehrere Benutzer
 - Erweiterte Observability mit Pydantic Logfire
